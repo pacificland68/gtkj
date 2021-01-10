@@ -16,6 +16,8 @@ import '@/icons' // icon
 import '@/permission' // permission control
 import '@/components/global-components' // register the global components
 
+import animate from "animate.css";
+
 /**
  * Currently MockJs will be used in the production environment,
  * please remove it before going online ! ! !
@@ -29,6 +31,7 @@ import '@/components/global-components' // register the global components
 // Vue.use(ElementUI, { locale })
 // 如果想要中文版 element-ui，按如下方式声明
 Vue.use(ElementUI)
+Vue.use(animate)
 
 Vue.config.productionTip = false
 

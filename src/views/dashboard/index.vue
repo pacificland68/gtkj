@@ -1,5 +1,36 @@
 <template>
   <div class="dashboard-container">
+    <div>
+      <transition
+                  enter-active-class="animate__animated animate__fadeIn"
+                  leave-active-class="animate__animated animate__fadeOut"
+          >
+        <div class="searchBox" v-show="showSearchBox">
+          <transition
+                  enter-active-class="animate__animated animate__fadeInUp"
+                  leave-active-class="animate__animated animate__fadeOutDown"
+          >
+              <div class="fixedSearch" v-show="showFixedSearch">
+                  <div style="position: absolute; width: 30%; z-index: auto">
+                    <el-input
+                    v-model="input"
+                      class="input-search"
+                      placeholder="输入关键字查询"
+                      style="padding-left:20px; "
+                    />
+                  </div>
+                  <div style="position: absolute; color:#000000; padding-top: 23px; margin-left: 30.8%; font-size:130%; z-index: 2">
+                    <i class="el-icon-search" />
+                  </div>
+                  <div style="position: absolute; padding-top:0px; left: 53.9%; z-index: 3; width: 10%">
+                    <el-button class="search-button">搜索</el-button>
+                  </div>
+              </div>
+          </transition>
+        </div>
+      </transition>
+    </div>
+
     <NavMenu />
 
     <br><br>
@@ -87,11 +118,35 @@ export default {
   name: 'Dashboard',
   data() {
     return {
-      dashboardContainerUrls: config.dashboardContainerUrls
+      dashboardContainerUrls: config.dashboardContainerUrls,
+      showFixedSearch: false,
+      showSearchBox: false,
+      input: '',
     }
   },
   computed: {
     ...mapGetters(['name'])
+  },
+  mounted() {
+      // 监听页面滚动事件
+      window.addEventListener("scroll", this.showSearch)
+  },
+  methods:{
+     showSearch() {
+          // 获取当前滚动条向下滚动的距离
+          let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+          // 当页面滚动到高度300px处时，显示搜索框
+          if (scrollTop > 235) {
+              this.showFixedSearch = true;
+              this.showSearchBox = true;
+          } else if(scrollTop) {
+              this.showFixedSearch = false;
+          } 
+          
+          if(scrollTop <= 235){
+              this.showSearchBox = false
+          }
+      },
   }
 }
 </script>
@@ -108,6 +163,41 @@ export default {
   }
 }
 
+.fixedSearch {
+    position: fixed;
+    width: 100%;
+    z-index: 999;
+    // background: #f6f6f6;
+    height: 120px;
+    overflow: hidden;
+}
+
+.searchBox{
+  position: fixed;
+    width: 100%;
+    z-index: 999;
+  background: #ffffff;
+  height: 120px;
+    overflow: hidden;
+    box-shadow: 0px 1px 40px 20px rgb(107, 107, 107);
+}
+
+// .input-search{
+//     border-radius: 100px;
+//     border:1px solid rgb(0, 0, 0);
+//     font-size: 18px;
+//     margin-left: 25%;
+//     margin-right: 50%;
+
+//     >>> .el-input__inner{
+//         height: 72px;
+//         border-radius: 100px;
+//         background-color: rgba(0,0,0,0.5);
+//         color: #000000;
+//         border-color: transport;
+//     }
+// }
+
 .data-center {
   img {
     height: 180px;
@@ -117,4 +207,33 @@ export default {
     transform: scale(1.03);
   }
 }
+</style>
+
+<style scoped>
+.input-search{
+    border-radius: 100px;
+    border:1px solid rgb(0, 0, 0);
+    font-size: 18px;
+    margin-left: 100%;
+    margin-right: 50%;
+}
+
+/deep/ .el-input__inner{
+        height: 65px;
+        border-radius: 100px;
+        /* background-color: rgba(0,0,0,0.5); */
+        border: none;
+        color: #000000;
+        border-color: transport;
+}
+
+.search-button{
+        height: 65px;
+        width: 60%;
+        border-radius: 100px;
+        background-color: #4B5EC6;
+        color: #FFFFFF;
+        border:none;
+        font-size: 100%
+    }
 </style>

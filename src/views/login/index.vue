@@ -247,12 +247,12 @@ export default {
     this.getQrcode();
 
     //获取验证码
-    axios
-      .get(config.loginUrls.getVerification, { withCredentials: true })
-      .then((result) => {
-        console.log(result.data.data.fourRandom);
-        this.identifyCode = result.data.data.fourRandom;
-      });
+    // axios
+    //   .get(config.loginUrls.getVerification, { withCredentials: true })
+    //   .then((result) => {
+    //     console.log(result.data.data.fourRandom);
+    //     this.identifyCode = result.data.data.fourRandom;
+    //   });
   },
   methods: {
     // showPwd() {
@@ -268,58 +268,61 @@ export default {
     handleLogin() {
       const that = this;
       that.loading = true;
-      const encryusername = cryptojs.encrypt(this.loginForm.username);
-      const encrypwd = cryptojs.encrypt(this.loginForm.password);
-
-      axios
-        .post(
-          config.loginUrls.loginAesEncryptUrl,
-          {
-            encAccount: encryusername,
-            encPassword: encrypwd,
-            code: this.loginForm.identifyCode,
-          },
-          { withCredentials: true }
-        )
-        .then(function (response) {
-          const code = response.data.code;
-          if (code === "200") {
-            setToken(response.data.data.ssotoken);
-            that.$router.push({ path: "/dashboard" });
+      // const encryusername = cryptojs.encrypt(this.loginForm.username);
+      // const encrypwd = cryptojs.encrypt(this.loginForm.password);
+      setToken("132");
+      that.$router.push({ path: "/dashboard" });
             that.loading = false;
-          } else if (code === "101") {
-            that.$message({
-              showClose: true,
-              message: "账号、密码错误！",
-              type: "error",
-            });
-          } else if (code === "-999") {
-            that.$message({
-              showClose: true,
-              message: "登录出错，SSO服务返回信息有误！",
-              type: "error",
-            });
-          } else if (code === "111") {
-            that.$message({
-              showClose: true,
-              message: "请输入正确验证码！",
-              type: "error",
-            });
 
-            //重新获取验证码
-            axios
-              .get(config.loginUrls.getVerification, { withCredentials: true })
-              .then((result) => {
-                console.log(result.data.data.fourRandom);
-                that.identifyCode = result.data.data.fourRandom;
-              });
-          }
-          that.loading = false;
-        })
-        .catch(function (error) {
-          console.log(error);
-          that.loading = false;
-        });
+      // axios
+      //   .post(
+      //     config.loginUrls.loginAesEncryptUrl,
+      //     {
+      //       encAccount: encryusername,
+      //       encPassword: encrypwd,
+      //       code: this.loginForm.identifyCode,
+      //     },
+      //     { withCredentials: true }
+      //   )
+      //   .then(function (response) {
+      //     const code = response.data.code;
+      //     if (code === "200") {
+      //       setToken(response.data.data.ssotoken);
+      //       that.$router.push({ path: "/dashboard" });
+      //       that.loading = false;
+      //     } else if (code === "101") {
+      //       that.$message({
+      //         showClose: true,
+      //         message: "账号、密码错误！",
+      //         type: "error",
+      //       });
+      //     } else if (code === "-999") {
+      //       that.$message({
+      //         showClose: true,
+      //         message: "登录出错，SSO服务返回信息有误！",
+      //         type: "error",
+      //       });
+      //     } else if (code === "111") {
+      //       that.$message({
+      //         showClose: true,
+      //         message: "请输入正确验证码！",
+      //         type: "error",
+      //       });
+
+      //       //重新获取验证码
+      //       axios
+      //         .get(config.loginUrls.getVerification, { withCredentials: true })
+      //         .then((result) => {
+      //           console.log(result.data.data.fourRandom);
+      //           that.identifyCode = result.data.data.fourRandom;
+      //         });
+      //     }
+      //     that.loading = false;
+      //   })
+      //   .catch(function (error) {
+      //     console.log(error);
+      //     that.loading = false;
+      //   });
     },
 
     changeCode() {

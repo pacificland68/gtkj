@@ -6,23 +6,19 @@
         <div>
           <el-row>
             <el-col :span="6" class="col-menu">
-              <!-- <div class="col-menu"> -->
               <font class="title">深圳市国土空间基础信息平台</font>
-              <!-- </div> -->
             </el-col>
             <el-col :span="14">
               <div class="menuu">
                 <el-menu style="margin-left: 50px" text-color="#D3D3D3" active-text-color="#FFFFFF" :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
                   <el-menu-item index="1" style="color:#D3D3D3; font-size:20px; padding-right:6%" class="menu_title">首页</el-menu-item>
                   <el-submenu index="2" style=" padding-right:3%;">
-                    <!-- <el-submenu index="2" style="margin-left: 3%"> -->
                     <template slot="title" style="color:#D3D3D3;">数据资源中心</template>
                     <el-menu-item index="2-1" style="color: black"><a :href="url_data_resource" target="_blank">数据资源目录</a></el-menu-item>
                     <el-menu-item index="2-2" style="color: black"><a :href="data_resource" target="_blank">资源目录编目</a></el-menu-item>
                     <!-- <el-menu-item index="2-8" style="color: black"><a :href="url">数据资源共享数据</a></el-menu-item> -->
                   </el-submenu>
                   <el-submenu index="3" style=" padding-right:3%">
-                    <!-- <el-submenu index="3" style="margin-left: 3%"> -->
                     <template slot="title">能力服务中心</template>
                     <el-menu-item index="3-1" style="color: black"><a :href="threeVisualizationService" target="_blank">三维可视化服务</a></el-menu-item>
                     <el-menu-item index="3-2" style="color: black"><a :href="menuUrls.integrated" target="_blank">二三维一体化服务</a></el-menu-item>
@@ -33,7 +29,6 @@
                     <el-menu-item index="3-7" style="color: black"><a :href="menuUrls.modelCalculateService" target="_blank">模型计算服务</a></el-menu-item>
                   </el-submenu>
                   <el-submenu index="4" style=" padding-right:3%">
-                    <!-- <el-submenu index="4" style="margin-left: 3%"> -->
                     <template slot="title">应用中心</template>
                     <el-menu-item index="4-1" style="color: black"><a :href="menuUrls.egov" target="_blank">电子政务平台</a></el-menu-item>
                     <el-menu-item index="4-2" style="color: black"><a :href="onemap" target="_blank">国土空间规划“一张图”实施监督信息系统</a></el-menu-item>
@@ -41,7 +36,6 @@
                     <el-menu-item index="4-4" style="color: black">CIM</el-menu-item>
                   </el-submenu>
                   <el-submenu index="5" style="color:#D3D3D3; font-size:20px; padding-right:3%; ">
-                    <!-- <el-submenu index="5" style="color:#D3D3D3; font-size:20px; margin-left: 3%"> -->
                     <template slot="title">开发中心</template>
                     <el-menu-item index="5-1" style="color: black"><a :href="menuUrls.threeVisualizationDev" target="_blank">三维应用开发</a></el-menu-item>
                     <el-menu-item index="5-2" style="color: black"><a :href="menuUrls.threeStatisticalAnalysis" target="_blank">三维统计分析API</a></el-menu-item>
@@ -65,20 +59,18 @@
               </div>
             </el-col>
             <el-col :span="3" class="col-menu3">
-              <!-- <div class="col-menu3"> -->
               <a href="#"><img :src="messageImg" style="width: 16px; height: 16px"></a>
               <a href="#"><img :src="profileImg" style="width: 16px; height: 16px; margin-left: 20px"></a>
               <a href=""><img :src="logoutImg" style="width: 16px; height: 16px; margin-left: 20px" @click="handleLogout"></a>
             </el-col>
-            <!-- </div> -->
           </el-row>
         </div>
       </div>
 
       <!-- input -->
       <div style="text-align:center;">
-        <div style="height:551px; position:relative;">
-          <div style="position: absolute; margin-top:220px; left:35%; right:35%; z-index: auto">
+        <div style="height:551px;">
+          <div style="position: absolute; margin-top:15.3%; width: 30%; z-index: auto">
             <el-input
               v-model="input"
               class="input-search"
@@ -94,12 +86,6 @@
 
         </div>
       </div>
-
-      <!-- messages -->
-      <!-- <div class="mb">
-        <font class="message-text">深圳市规划和自然资源局坪山管理局开展2020年地质灾害防治知识宣传活动 2020-08-20 <a href="#" style="padding-left:20px">了解更多</a></font>
-      </div> -->
-      <!-- </div> -->
     </div>
   </div>
 </template>
@@ -169,18 +155,18 @@ export default {
     }
 
     .navBg{
-        /* position: absolute; */
-        top: 0;
-        left: 0;
-        right:0;
-        /* width: 100%; */
-        height: 100%;
-        /* z-index: -1; */
+        position:absolute;
+        top:0;
+        left:0;
+        height:661px;
+        width:100%;
+        background-image:url("../../assets/images/nav_background.png"); 
+        background-position: center 0;
+        background-repeat: no-repeat;
+        background-attachment:fixed;
         background-size: cover;
-        background-position: 0% 50%;
-        /* opacity:0.9; */;
-        text-align:center;
-        /* background: linear-gradient(180deg, #4B5EC6 0%, rgba(38, 47, 99, 0) 100%) */
+        -webkit-background-size: cover;/* 兼容Webkit内核浏览器如Chrome和Safari */
+
     }
 
     .grad{
@@ -218,45 +204,47 @@ export default {
             display:flex;
             padding-left: 5%;
             float: left;
-            zoom: 90%;
+            /* zoom: 90%; */
         }
     }
+
     @media screen and (max-width: 1300px) {
         .menuu{
             padding-left: 4%;
+            /* zoom: 90%; */
+        }
+    }
+
+    @media screen and (max-width: 1200px) {
+        .col-menu{
+            display:flex;
+            padding-left: 4%;
+            float: left;
             zoom: 90%;
         }
     }
 
-    @media screen and (max-width: 1100px) {
-        .col-menu{
-            display:flex;
-            padding-left: 5%;
-            float: left;
-            zoom: 80%;
-        }
-    }
-
-    @media screen and (max-width: 1100px) {
+    @media screen and (max-width: 1200px) {
         .menuu{
-            padding-left: 5%;
-            zoom: 80%;
+            padding-left: 0;
+            zoom: 90%;
         }
     }
 
     @media screen and (max-width: 960px) {
         .col-menu{
             display:flex;
-            padding-left: 5%;
+            padding-left: 1%;
+            padding-top: 1%;
             float: left;
-            zoom: 70%;
+            zoom: 85%;
         }
     }
 
     @media screen and (max-width: 960px) {
         .menuu{
-            padding-left: 5%;
-            zoom: 70%;
+            padding-top: 2%;
+            zoom: 75%;
         }
     }
 
@@ -269,25 +257,15 @@ export default {
     }
 
     .col-menu3{
-        /* display: flex; */
-        /* float: left; */
-        padding-top: 1%;
-        /* margin-left: 6%;
-        margin-right: 6% */
-        /* width: 10%; */
-        /* text-align: right */
+        padding-top: 1.7%;
     }
 
     .input-search{
-        /* padding-left: 50%;
-        padding-top:10% */
-        /* padding-top:10%;
-        padding-left: 35%; */
-        /* padding-right: 35%; */
-        /* width: 100%; */
         border-radius: 100px;
         border:1px solid white;
         font-size: 18px;
+        margin-left: 50%;
+        margin-right: 50%;
     }
 
     >>> .el-input__inner{
@@ -316,11 +294,6 @@ export default {
         height: 34px;
         background-color:rgba(0, 0, 0, 0.2);
         margin-left: 600px;
-        /* align-content: center;
-        text-align: center; */
-        /* display: block */
-        /* display: flex;
-    align-items: center; */
     }
 
     .mb{
@@ -328,7 +301,6 @@ export default {
         height: 34px;
         background-color:rgba(0, 0, 0, 0.2);
         display:table-cell; vertical-align:middle;
-        /* margin-left:40% */
     }
 
     .message-text{
@@ -338,7 +310,6 @@ export default {
         line-height: 18px;
         color: #FFFFFF;
         opacity: 1;
-        /* width:100%; height:auto; float:left; display:inline */
     }
 
     .el-menu-item.is-active{
@@ -399,8 +370,6 @@ export default {
     .h{
         height: 660px;
         min-width: 100px;
-        /* margin:0 auto;
-        text-align:center; */
     }
 
     .menuu >>> .el-menu--popup{
@@ -411,14 +380,4 @@ export default {
         background-color: transparent !important;
         transform: scale(1.03) !important;
     }
-
-    /* .menuu >>> .el-menu--collapse .el-menu .el-submenu, .el-menu--popup{
-        min-width: 120px !important;
-    } */
-
-    /* .menuu{
-        float: left;
-        margin-left: 3%;
-        width: 60%;
-    } */
 </style>
